@@ -3,11 +3,20 @@ package com.example.demo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 // Serializable é uma interface que diz que os obejtos dessa classe poderão ser convertidos em uma sequencia de bits 
 // Para que serve? Para que os objetos possam ser gravados em arquivos, para trafegar em rede
+
+@Entity
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	
