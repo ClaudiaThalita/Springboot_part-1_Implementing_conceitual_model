@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class Produto  implements Serializable {
 	
 	//no diagrama, produtos pode tem várias categorias, além disso, precisamos iniciar as "coleçoes"
 	// para uma relação many to many precisamos de outra tabela (produtos x categorias)
+	@JsonBackReference //@JsonBackReference é a contrapartida de @JsonManagedReference. Ele é usado para lidar com o lado "ignorado" da relação, que é a entidade que não é serializada.
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", 
 			joinColumns = @JoinColumn(name ="produto_id"),

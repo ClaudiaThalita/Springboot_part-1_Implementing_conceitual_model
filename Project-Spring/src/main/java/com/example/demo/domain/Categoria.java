@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Categoria implements Serializable {
 	private String nome;
 	
 	//no diagrama, categoria tem vários produtos, além disso, precisamos iniciar as "coleçoes"
+	@JsonManagedReference //é usado para resolver o problema de referências circulares em objetos Java que precisam ser convertidos em JSON. Isso ocorre quando há uma relação bidirecional entre duas entidades e, ao converter uma dessas entidades em JSON, a biblioteca Jackson entra em um loop infinito porque não sabe quando parar.
 	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	 
